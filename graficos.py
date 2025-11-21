@@ -15,7 +15,6 @@ grafico_map_estado = px.scatter_geo(
 )
 
 # Criando gráfico de linhas
-# range_y= (0, df_rec_mensal.max()) - o máximo de valores que pode ter no eixo y é o maior valor do df
 grafico_rec_mensal = px.line(
     df_rec_mensal,
     x = 'Mes',
@@ -23,7 +22,7 @@ grafico_rec_mensal = px.line(
     markers = True,
     range_y= (0, df_rec_mensal.max()),
     color = 'Ano',
-    line_dash = 'Ano', # para diferenciar as linhas pelo estilo de traço (tracejado, pontilhado, etc.)
+    line_dash = 'Ano', 
     title = 'Receita Mensal'
 )
 
@@ -36,27 +35,22 @@ grafico_rec_estado = px.bar(
     x = 'Local da compra',
     y = 'Preco',
     text_auto = True,
-    title = 'Top Receita por Estado'
+    title = 'Top 7 - Receita por Estado'
 )
 
 grafico_rec_categoria = px.bar(
     df_rec_categoria.head(7),
     text_auto = True, # exibe automaticamente os valores em cima das barras
-    title = 'Top 7 Categorias om Maior Receita'
+    title = 'Top 7 - Categorias com Maior Receita'
 )
 
-
-#Sintaxe	Tipo retornado	Estrutura	Uso típico
-# df['Nome']	Series	1D (vetor)	Operações simples em uma coluna
-# df[['Nome']]	DataFrame	2D (tabela)	Quando precisa manter formato de DataFrame (ex.: .agg(), merge, join)
 
 grafico_vendedores = px.bar(
     df_vendedores[['sum']].sort_values('sum', ascending=False).head(7),
     x = 'sum',
-    y = df_vendedores[['sum']].sort_values('sum', ascending=False).head(7).index,#Como o índice do df_vendedores
-    # é o nome do Vendedor, o resultado será uma lista/Index com os 7 vendedores que mais venderam.
+    y = df_vendedores[['sum']].sort_values('sum', ascending=False).head(7).index,
     text_auto = True,
-    title = 'Top 7 Vendedores por Receita'
+    title = 'Top 7 - Vendedores por Receita'
 )
 
 grafico_vendas_vendedor = px.bar(
@@ -64,5 +58,5 @@ grafico_vendas_vendedor = px.bar(
     x = 'count',
     y = df_vendedores[['count']].sort_values('count', ascending=False).head(7).index,
     text_auto = True,
-    title = 'Top 7 Vendedores por Vendas'
+    title = 'Top 7 - Vendedores por Vendas'
 )
